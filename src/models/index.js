@@ -17,7 +17,7 @@ const setupDatabase = () => {
 
   connection.sync({ alter: true });
   return {
-    Artist
+    Artist,
   };
 };
 

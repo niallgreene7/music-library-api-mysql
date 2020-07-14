@@ -22,7 +22,7 @@ describe('/artists', () => {
   });
 
   describe('POST /artists', () => {
-    xit('creates a new artist in the database', async () => {
+    it('creates a new artist in the database', async () => {
       const response = await request(app).post('/artists').send({
         name: 'Tame Impala',
         genre: 'Rock',
@@ -31,7 +31,9 @@ describe('/artists', () => {
       await expect(response.status).to.equal(201);
       await expect(response.body.name).to.equal('Tame Impala');
 
-      const insertedArtistRecords = await Artist.findByPk(response.body.id, { raw: true });
+      const insertedArtistRecords = await Artist.findByPk(response.body.id, {
+        raw: true,
+      });
       await expect(insertedArtistRecords.name).to.equal('Tame Impala');
       await expect(insertedArtistRecords.genre).to.equal('Rock');
     });
